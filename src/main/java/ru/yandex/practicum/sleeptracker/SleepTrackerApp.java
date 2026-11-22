@@ -62,10 +62,13 @@ public class SleepTrackerApp {
 
     private static List<SleepAnalysis> getFunctions() {
         SleepAnalysis countOfSessions = new CountOfSessions();
-        SleepAnalysis minSession = new MinSessionDuration();
-        SleepAnalysis maxSession = new MaxSessionDuration();
+        SleepAnalysis minSessionDuration = new MinSessionDuration();
+        SleepAnalysis maxSessionDuration = new MaxSessionDuration();
         SleepAnalysis averageDuration = new AverageDuration();
         SleepAnalysis countOfBadSessions = new CountOfBadSessions();
-        return List.of(countOfSessions, minSession, maxSession, averageDuration, countOfBadSessions);
+        SleepAnalysis sleeplessNights = new SleeplessNights();
+
+        return List.of(countOfSessions, minSessionDuration, maxSessionDuration,
+                averageDuration, countOfBadSessions, sleeplessNights);
     }
 }

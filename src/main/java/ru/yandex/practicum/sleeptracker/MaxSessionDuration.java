@@ -9,12 +9,12 @@ public class MaxSessionDuration implements SleepAnalysis {
 
         if (sessions.isEmpty()) {
             return new SleepAnalysisResult("Продолжительность максимальной сессии " +
-                    "сна(в минутах)", "файл с сессиями сна пуст");
+                    "сна (в минутах)", "файл с сессиями сна пуст");
         }
         OptionalLong durationOfMaxSession = sessions.stream()
                 .mapToLong(SleepingSession::durationInMinutes)
                 .max();
         return new SleepAnalysisResult("Продолжительность максимальной сессии " +
-                "сна(в минутах)", durationOfMaxSession.getAsLong());
+                "сна (в минутах)", durationOfMaxSession.getAsLong());
     }
 }

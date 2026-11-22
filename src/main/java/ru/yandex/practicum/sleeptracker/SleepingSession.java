@@ -15,6 +15,6 @@ public record SleepingSession(LocalDateTime start, LocalDateTime finish, SleepQu
         return "Сессия сна: " +
                 "начало = " + start +
                 ", конец = " + finish +
-                ", качество сна = '" + status;
+                ", качество сна = " + status;
     }
 }
