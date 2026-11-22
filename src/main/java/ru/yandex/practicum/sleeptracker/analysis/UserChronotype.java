@@ -1,4 +1,7 @@
-package ru.yandex.practicum.sleeptracker;
+package ru.yandex.practicum.sleeptracker.analysis;
+
+import ru.yandex.practicum.sleeptracker.model.Chronotype;
+import ru.yandex.practicum.sleeptracker.model.SleepingSession;
 
 import java.util.List;
 import java.util.Map;

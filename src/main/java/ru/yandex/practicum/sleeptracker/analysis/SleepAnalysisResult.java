@@ -1,4 +1,4 @@
-package ru.yandex.practicum.sleeptracker;
+package ru.yandex.practicum.sleeptracker.analysis;
 
 public record SleepAnalysisResult(String description, Object result) {
 

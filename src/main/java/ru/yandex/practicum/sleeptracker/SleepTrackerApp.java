@@ -1,5 +1,9 @@
 package ru.yandex.practicum.sleeptracker;
 
+import ru.yandex.practicum.sleeptracker.analysis.*;
+import ru.yandex.practicum.sleeptracker.model.SleepQuality;
+import ru.yandex.practicum.sleeptracker.model.SleepingSession;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

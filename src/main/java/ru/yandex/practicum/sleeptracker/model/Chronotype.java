@@ -1,4 +1,4 @@
-package ru.yandex.practicum.sleeptracker;
+package ru.yandex.practicum.sleeptracker.model;
 
 public enum Chronotype {
     EARLY_BIRD("Жаворонок"),
@@ -7,8 +7,8 @@ public enum Chronotype {
 
     private final String label;
 
-    Chronotype(String chronotype) {
-        this.label = chronotype;
+    Chronotype(String label) {
+        this.label = label;
     }
 
     @Override
