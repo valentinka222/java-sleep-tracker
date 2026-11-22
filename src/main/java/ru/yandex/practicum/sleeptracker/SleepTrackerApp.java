@@ -8,6 +8,7 @@ import java.util.List;
 
 public class SleepTrackerApp {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
+    private static final List<SleepAnalysis> LIST_OF_FUNCTIONS = getFunctions();
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -30,9 +31,8 @@ public class SleepTrackerApp {
             System.out.println("Неправильно оформлены поля файла:\n" + e.getMessage());
             return;
         }
-        for (SleepingSession session : sessions) {
-            System.out.println(session);
-        }
+
+        LIST_OF_FUNCTIONS.forEach(f -> System.out.println(f.apply(sessions)));
     }
 
     public static List<SleepingSession> getSessions(String path) throws IOException {
@@ -58,5 +58,10 @@ public class SleepTrackerApp {
         } catch (DateTimeParseException | IllegalArgumentException e) {
             throw new IllegalArgumentException("Неверное значение строки " + s + ": " + e.getMessage(), e);
         }
+    }
+
+    private static List<SleepAnalysis> getFunctions() {
+        SleepAnalysis countOfSessions = new CountOfSessions();
+        return List.of(countOfSessions);
     }
 }
