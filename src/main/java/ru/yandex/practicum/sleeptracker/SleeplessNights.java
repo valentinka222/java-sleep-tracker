@@ -2,38 +2,33 @@ package ru.yandex.practicum.sleeptracker;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class SleeplessNights implements SleepAnalysis {
+    private static final String DESCRIPTION = "Количество бессонных ночей";
 
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
-            return new SleepAnalysisResult("Количество бессонных ночей", 0L);
+            return new SleepAnalysisResult(DESCRIPTION, 0L);
         }
         SleepingSession firstSession = sessions.getFirst();
         SleepingSession lastSession = sessions.getLast();
         long totalNights;
 
         if (firstSession.start().getHour() < 12) {
-            totalNights = ChronoUnit.DAYS.between(firstSession.start().toLocalDate()
-                    , lastSession.finish().toLocalDate()) + 1;
+            totalNights = ChronoUnit.DAYS.between(firstSession.start().toLocalDate(),
+                    lastSession.finish().toLocalDate()) + 1;
         } else {
-            totalNights = ChronoUnit.DAYS.between(firstSession.start().toLocalDate()
-                    , lastSession.finish().toLocalDate());
+            totalNights = ChronoUnit.DAYS.between(firstSession.start().toLocalDate(),
+                    lastSession.finish().toLocalDate());
         }
 
-        Predicate<SleepingSession> isSleepNight = (session ->
-                (session.start().toLocalDate().isBefore(session.finish().toLocalDate()))
-                        || (session.start().getHour() < 6)
-        );
-
         long sleepNights = sessions.stream()
-                .filter(isSleepNight)
+                .filter(SleepingSession::isSleepNight)
                 .map(s -> s.finish().toLocalDate())
                 .distinct()
                 .count();
-        return new SleepAnalysisResult("Количество бессонных ночей",
+        return new SleepAnalysisResult(DESCRIPTION,
                 totalNights - sleepNights);
     }
 }

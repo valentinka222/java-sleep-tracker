@@ -10,6 +10,11 @@ public record SleepingSession(LocalDateTime start, LocalDateTime finish, SleepQu
         return Duration.between(start, finish).toMinutes();
     }
 
+    public boolean isSleepNight() {
+        return (start().toLocalDate().isBefore(finish().toLocalDate()))
+                || (start().getHour() < 6);
+    }
+
     @Override
     public String toString() {
         return "Сессия сна: " +

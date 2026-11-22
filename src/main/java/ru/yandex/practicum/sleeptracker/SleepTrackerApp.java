@@ -7,7 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class SleepTrackerApp {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern("dd.MM.yy HH:mm");
     private static final List<SleepAnalysis> LIST_OF_FUNCTIONS = getFunctions();
 
     public static void main(String[] args) {
@@ -32,6 +33,7 @@ public class SleepTrackerApp {
             return;
         }
 
+        System.out.println("Анализ сна по файлу: " + args[0] + "\n");
         LIST_OF_FUNCTIONS.forEach(f -> System.out.println(f.apply(sessions)));
     }
 
@@ -56,7 +58,8 @@ public class SleepTrackerApp {
                     SleepQuality.valueOf(line[2])
             );
         } catch (DateTimeParseException | IllegalArgumentException e) {
-            throw new IllegalArgumentException("Неверное значение строки " + s + ": " + e.getMessage(), e);
+            throw new IllegalArgumentException("Неверное значение строки " + s + ": "
+                    + e.getMessage(), e);
         }
     }
 
@@ -67,8 +70,9 @@ public class SleepTrackerApp {
         SleepAnalysis averageDuration = new AverageDuration();
         SleepAnalysis countOfBadSessions = new CountOfBadSessions();
         SleepAnalysis sleeplessNights = new SleeplessNights();
+        SleepAnalysis userChronotype = new UserChronotype();
 
         return List.of(countOfSessions, minSessionDuration, maxSessionDuration,
-                averageDuration, countOfBadSessions, sleeplessNights);
+                averageDuration, countOfBadSessions, sleeplessNights, userChronotype);
     }
 }
